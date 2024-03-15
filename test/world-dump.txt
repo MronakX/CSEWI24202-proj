@@ -1,0 +1,11 @@
+b 0 0 0 solid
+b 0 0 1 solid
+b 0 0 2 solid
+b 1 0 0 solid
+b 1 0 1 solid
+b 1 0 2 solid
+b 2 0 0 solid
+b 2 0 1 solid
+b 2 0 2 solid
+b 1 1 1 solid
+b 1 2 1 solid
