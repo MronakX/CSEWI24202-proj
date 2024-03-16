@@ -20,7 +20,11 @@ The minecraft map data is under the `benchmark` folder. We have a manually desig
 
 credit: Dawei Guo, [https://github.com/MronakX](https://github.com/MronakX)
 
+<<<<<<< HEAD
 The modified A* algorithm with resource is implemented in `build.ipynb`, where we also implemented a baseline ordinary A* algorithm.
+=======
+The modified A* algorithm with resource is implemented in `stateful-pathfind.ipynb`, where we also implemented a baseline ordinary A* algorithm. 
+>>>>>>> 3dec6fdb35e0c6bbeae6d7d3f3d6a3bedf4b48dc
 
 Modify the folloing line to whatever benchmark you want to test. Also customize the starting point and goal point to adapt the data.
 
@@ -38,6 +42,7 @@ world_txt_filename = 'benchmark/superflat/world-dump.txt'
 
 ##### superflat
 
+<<<<<<< HEAD
 |            A*            |       Stateful A*       |
 | :----------------------: | :----------------------: |
 | ![](./assets/ord_path.png) | ![](./assets/res_path.png) |
@@ -52,3 +57,11 @@ Results:
 
 | ![bridge](./assets/plot_bridge.png) | ![skyblock](./assets/plot_skyblock.png) |
 | --------------------------------- | ------------------------------------- |
+=======
+| A* | Stateful A* |
+|:--:|:--:|
+| ![](./assets/ord_path.png) | ![](./assets/res_path.png) |
+
+## Real-Time Update
+TODO Jiahao, Yulin
+>>>>>>> 3dec6fdb35e0c6bbeae6d7d3f3d6a3bedf4b48dc
