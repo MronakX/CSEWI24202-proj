@@ -21,7 +21,7 @@ The minecraft map data is under the `benchmark` folder. We have a manually desig
 
 credit: Dawei Guo, [https://github.com/MronakX](https://github.com/MronakX)
 
-The modified A* algorithm with resource is implemented in `build.ipynb`, where we also implemented a baseline ordinary A* algorithm. 
+The modified A* algorithm with resource is implemented in `stateful-pathfind.ipynb`, where we also implemented a baseline ordinary A* algorithm. 
 
 Modify the folloing line to whatever benchmark you want to test. Also customize the starting point and goal point to adapt the data.
 
