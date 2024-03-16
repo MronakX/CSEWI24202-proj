@@ -5,7 +5,7 @@ from queue import PriorityQueue
 
 
 class RealTimeGraph:
-    def __init__(self, file_path, position = (0, 0, 0), target = (1, 1, 1), view = 5, Fsafe=3, jump_height=1, K=3):
+    def __init__(self, file_path, position = (0, 0, 0), target = (1, 1, 1), view = 5, Fsafe=3, jump_height=1, K=3, update=True):
         self.m = load_map(file_path) # (x, y, z) -> block_type
         self.position = position
         self.target = target
@@ -15,12 +15,16 @@ class RealTimeGraph:
         self.Fsafe = Fsafe
         self.jump_height = jump_height
         self.K = K
+        self.update = update
         self.graph = self.build_init_graph(view)
-        self.graph2 = self.build_init_graph(5)
+        # self.graph2 = self.build_init_graph(5)
     
     def is_inview(self, x, y, z, view):
-        diff = abs(np.array([x, y, z]) - np.array(self.position))
-        return max(diff[0], diff[1]) <= view
+        if self.update:
+            diff = abs(np.array([x, y, z]) - np.array(self.position))
+            return max(diff[0], diff[1]) <= view
+        else:
+            return True
 
     def build_init_graph(self, view):
         graph = {}
@@ -92,6 +96,7 @@ class RealTimeGraph:
                     current = came_from[current]
                     path.append(current)
                 path.reverse()
+                print('total cost', total_cost)
                 return path, total_cost
             
             for neighbor, distance in self.graph[current]:
@@ -148,7 +153,7 @@ class RealTimeGraph:
                     frontier.put((f_score[neighbor], neighbor))
 
 
-        return False, 0
+        return None, 0
 
     def move_agent_and_update(self):
         frontier = deque([(tuple(self.position), [])])
@@ -186,21 +191,22 @@ class RealTimeGraph:
     def control_agent(self):
         path, cost = self.move_agent_and_update_with_cost()
 
-        if not path:
-            print("No path found.")
-            return path, cost
+        if path is None:
+            print("No path found. Moving to a new position")
+            return None, 0
+        
 
-        for node in path:
-            print("Moving to", node)
+        # for node in path:
+            # print("Moving to", node)
         print('total cost', cost)
-        print("Reached the target.")
+        # print("Reached the target.")
         return path, cost
 
 
 if __name__ == "__main__":
     # file_path = '/Users/liuyulin/Documents/GitHub/CSEWI24202-proj/benchmark/skyblock/world-dump.txt'
-    file_path = 'benchmark/skyblock/world-dump.txt'
-    rtg = RealTimeGraph(file_path, view=3, position=(0, 0, 60), target=(5, 5, 60))
+    file_path = 'benchmark/simple/world-dump.txt'
+    rtg = RealTimeGraph(file_path, view=1, position=(0, 0, 0), target=(2, 2, 0))
     path, cost = rtg.control_agent()
 
     # rtg_static = RealTimeGraph(file_path, view=50, position=(0, 0, 0), target=(2, 2, 0))
