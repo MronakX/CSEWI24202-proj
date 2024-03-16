@@ -16,7 +16,7 @@ class RealTimeGraph:
         self.jump_height = jump_height
         self.K = K
         self.graph = self.build_init_graph(view)
-        # self.graph2 = self.build_init_graph(5)
+        self.graph2 = self.build_init_graph(5)
     
     def is_inview(self, x, y, z, view):
         diff = abs(np.array([x, y, z]) - np.array(self.position))
@@ -186,9 +186,10 @@ class RealTimeGraph:
     def control_agent(self):
         path, cost = self.move_agent_and_update_with_cost()
 
-        if path is None:
-            print("No path found. Moving to a new position")
-    
+        if not path:
+            print("No path found.")
+            return path, cost
+
         for node in path:
             print("Moving to", node)
         print('total cost', cost)
@@ -198,8 +199,8 @@ class RealTimeGraph:
 
 if __name__ == "__main__":
     # file_path = '/Users/liuyulin/Documents/GitHub/CSEWI24202-proj/benchmark/skyblock/world-dump.txt'
-    file_path = 'benchmark/simple/world-dump.txt'
-    rtg = RealTimeGraph(file_path, view=1, position=(0, 0, 0), target=(2, 2, 0))
+    file_path = 'benchmark/skyblock/world-dump.txt'
+    rtg = RealTimeGraph(file_path, view=3, position=(0, 0, 60), target=(5, 5, 60))
     path, cost = rtg.control_agent()
 
     # rtg_static = RealTimeGraph(file_path, view=50, position=(0, 0, 0), target=(2, 2, 0))
