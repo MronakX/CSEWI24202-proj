@@ -16,7 +16,7 @@ class RealTimeGraph:
         self.jump_height = jump_height
         self.K = K
         self.graph = self.build_init_graph(view)
-        self.graph2 = self.build_init_graph(5)
+        # self.graph2 = self.build_init_graph(5)
     
     def is_inview(self, x, y, z, view):
         diff = abs(np.array([x, y, z]) - np.array(self.position))
