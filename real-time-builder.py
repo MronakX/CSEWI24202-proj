@@ -193,6 +193,7 @@ class RealTimeGraph:
             print("Moving to", node)
         print('total cost', cost)
         print("Reached the target.")
+        return path, cost
 
 
 if __name__ == "__main__":
