@@ -42,3 +42,6 @@ world_txt_filename = 'benchmark/superflat/world-dump.txt'
 | A* | Stateful A* |
 |:--:|:--:|
 | ![](./assets/ord_path.png) | ![](./assets/res_path.png) |
+
+## Real-Time Update
+TODO
