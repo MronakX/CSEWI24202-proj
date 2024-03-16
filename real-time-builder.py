@@ -120,8 +120,8 @@ class RealTimeGraph:
         while not frontier.empty():
             # BFS
             # print(frontier.get())
-            print('g_score', g_score)
-            print('graph', self.graph)
+            # print('g_score', g_score)
+            # print('graph', self.graph)
             current_cost, current_node = frontier.get()
             if current_node == self.target:
                 path = [current_node]
@@ -184,13 +184,14 @@ class RealTimeGraph:
         return None
 
     def control_agent(self):
-        path = self.move_agent_and_update_with_cost()
+        path, cost = self.move_agent_and_update_with_cost()
 
         if path is None:
             print("No path found. Moving to a new position")
     
         for node in path:
             print("Moving to", node)
+        print('total cost', cost)
         print("Reached the target.")
 
 
@@ -198,7 +199,7 @@ if __name__ == "__main__":
     # file_path = '/Users/liuyulin/Documents/GitHub/CSEWI24202-proj/benchmark/skyblock/world-dump.txt'
     file_path = 'benchmark/simple/world-dump.txt'
     rtg = RealTimeGraph(file_path, view=1, position=(0, 0, 0), target=(2, 2, 0))
-    path = rtg.control_agent()
+    path, cost = rtg.control_agent()
 
     # rtg_static = RealTimeGraph(file_path, view=50, position=(0, 0, 0), target=(2, 2, 0))
     # print(rtg_static.graph)
